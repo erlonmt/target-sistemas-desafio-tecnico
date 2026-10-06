@@ -3,7 +3,7 @@ using System.Globalization;
 
 Console.WriteLine("Comissões dos Vendedores");
 
-string json = File.ReadAllText("vendas.json");
+string json = File.ReadAllText(Path.Combine("Data", "vendas.json"));
 
 var opcoes = new JsonSerializerOptions
 {
@@ -58,7 +58,7 @@ foreach (var resultado in comissoesPorVendedor)
 
 Console.WriteLine("Estoque inicial");
 
-string jsonEstoque = File.ReadAllText("estoque.json");
+string jsonEstoque = File.ReadAllText(Path.Combine("Data", "estoque.json"));
 
 var dadosEstoque =
     JsonSerializer.Deserialize<DadosEstoque>(jsonEstoque, opcoes);
