@@ -135,3 +135,13 @@ foreach (Produto produto in produtos)
         Console.WriteLine($"Estoque atual: {produto.Estoque}");
     }
 }
+
+Console.WriteLine("Histórico de movimentações");
+
+foreach (MovimentacaoEstoque movimento in movimentacoes)
+{
+    Console.WriteLine(
+        $"{movimento.Id} - {movimento.Descricao} - " +
+        $"Produto {movimento.CodigoProduto} - " +
+        $"Quantidade {movimento.Quantidade}");
+}
