@@ -145,3 +145,15 @@ foreach (MovimentacaoEstoque movimento in movimentacoes)
         $"Produto {movimento.CodigoProduto} - " +
         $"Quantidade {movimento.Quantidade}");
 }
+
+decimal valor = 100m;
+DateOnly vencimento =
+    DateOnly.FromDateTime(DateTime.Today.AddDays(-3));
+DateOnly hoje =
+    DateOnly.FromDateTime(DateTime.Today);
+
+decimal juros =
+    CalculadoraJuros.Calcular(valor, vencimento, hoje);
+
+Console.WriteLine($"Juros: {juros:F2}");
+Console.WriteLine($"Total: {(valor + juros):F2}");
