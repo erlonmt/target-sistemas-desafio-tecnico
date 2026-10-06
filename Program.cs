@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Globalization;
 
 Console.WriteLine("Comissões dos Vendedores");
 
@@ -146,9 +147,18 @@ foreach (MovimentacaoEstoque movimento in movimentacoes)
         $"Quantidade {movimento.Quantidade}");
 }
 
-decimal valor = 100m;
+Console.Write("Digite o valor da conta: ");
+string textoValor = Console.ReadLine() ?? "";
+
+decimal valor =
+    decimal.Parse(textoValor, CultureInfo.InvariantCulture);
+
+Console.Write("Digite o vencimento (AAAA-MM-DD): ");
+string textoVencimento = Console.ReadLine() ?? "";
+
 DateOnly vencimento =
-    DateOnly.FromDateTime(DateTime.Today.AddDays(-3));
+    DateOnly.ParseExact(textoVencimento, "yyyy-MM-dd");
+
 DateOnly hoje =
     DateOnly.FromDateTime(DateTime.Today);
 
