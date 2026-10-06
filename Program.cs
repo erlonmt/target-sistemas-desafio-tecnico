@@ -150,14 +150,27 @@ foreach (MovimentacaoEstoque movimento in movimentacoes)
 Console.Write("Digite o valor da conta: ");
 string textoValor = Console.ReadLine() ?? "";
 
-decimal valor =
-    decimal.Parse(textoValor, CultureInfo.InvariantCulture);
+if (!decimal.TryParse(
+        textoValor,
+        NumberStyles.Number,
+        CultureInfo.InvariantCulture,
+        out decimal valor))
+{
+    Console.WriteLine("Valor inválido. Use, por exemplo: 100.00");
+    return;
+}
 
 Console.Write("Digite o vencimento (AAAA-MM-DD): ");
 string textoVencimento = Console.ReadLine() ?? "";
 
-DateOnly vencimento =
-    DateOnly.ParseExact(textoVencimento, "yyyy-MM-dd");
+if (!DateOnly.TryParseExact(
+        textoVencimento,
+        "yyyy-MM-dd",
+        out DateOnly vencimento))
+{
+    Console.WriteLine("Data inválida. Use o formato AAAA-MM-DD.");
+    return;
+}
 
 DateOnly hoje =
     DateOnly.FromDateTime(DateTime.Today);
