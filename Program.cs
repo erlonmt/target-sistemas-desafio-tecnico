@@ -79,12 +79,12 @@ foreach (Produto produto in produtos)
 List<MovimentacaoEstoque> movimentacoes = new();
 
 int proximoId = 1;
-int CodigoProdutoMovimentado = 101;
+int codigoProdutoMovimentado = 101;
 int quantidadeEntrada = 10;
 
 foreach (Produto produto in produtos)
 {
-    if (produto.CodigoProduto == CodigoProdutoMovimentado)
+    if (produto.CodigoProduto == codigoProdutoMovimentado)
     {
         produto.Estoque += quantidadeEntrada;
 
@@ -104,6 +104,34 @@ foreach (Produto produto in produtos)
             $"{movimentacao.Descricao} de {movimentacao.Quantidade} unidades " +
             $"do produto {movimentacao.CodigoProduto}");
 
+        Console.WriteLine($"Estoque atual: {produto.Estoque}");
+    }
+}
+
+int quantidadeSaida = 5;
+
+foreach (Produto produto in produtos)
+{
+    if (produto.CodigoProduto == codigoProdutoMovimentado)
+    {
+        produto.Estoque -= quantidadeSaida;
+
+        MovimentacaoEstoque movimentacao = new()
+        {
+            Id = proximoId,
+            CodigoProduto = produto.CodigoProduto,
+            Quantidade = quantidadeSaida,
+            Descricao = "Saída"
+        };
+
+        movimentacoes.Add(movimentacao);
+        proximoId++;
+
+        Console.WriteLine(
+            $"Movimentação {movimentacao.Id}: " +
+            $"{movimentacao.Descricao} de {movimentacao.Quantidade} unidades " +
+            $"do produto {movimentacao.CodigoProduto}");
+        
         Console.WriteLine($"Estoque atual: {produto.Estoque}");
     }
 }
